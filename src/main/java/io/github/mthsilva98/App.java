@@ -1,4 +1,4 @@
-package org.example;
+package io.github.mthsilva98;
 
 /**
  * Hello world!
