@@ -3,6 +3,8 @@ package oi.github.mthsilva98.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import oi.github.mthsilva98.dao.LivroDAO;
+import oi.github.mthsilva98.model.Livro;
 
 public class CadastroLivroController {
 
@@ -29,7 +31,6 @@ public class CadastroLivroController {
 
     @FXML
     private void initialize() {
-        // Adicione aqui as ações para os botões, por exemplo:
         btnSalvar.setOnAction(event -> salvarLivro());
         btnAtualizar.setOnAction(event -> atualizarLivro());
         btnExcluir.setOnAction(event -> excluirLivro());
@@ -37,17 +38,26 @@ public class CadastroLivroController {
     }
 
     private void salvarLivro() {
-        // Código para salvar o livro
-        System.out.println("Livro salvo: " + txtTitulo.getText());
+        String titulo = txtTitulo.getText();
+        String autor = txtAutor.getText();
+        String genero = txtGenero.getText();
+
+        // Cria um novo objeto Livro com os dados dos campos
+        Livro livro = new Livro(titulo, autor, genero);
+
+        // Cria uma instância do DAO para salvar o livro
+        LivroDAO livroDAO = new LivroDAO();
+        livroDAO.salvar(livro);
+
+        // Confirmação no console para verificar se o método foi executado
+        System.out.println("Livro salvo: " + titulo);
     }
 
     private void atualizarLivro() {
-        // Código para atualizar o livro
         System.out.println("Livro atualizado: " + txtTitulo.getText());
     }
 
     private void excluirLivro() {
-        // Código para excluir o livro
         System.out.println("Livro excluído: " + txtTitulo.getText());
     }
 
