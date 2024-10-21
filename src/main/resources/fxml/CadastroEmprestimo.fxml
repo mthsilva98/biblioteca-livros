@@ -31,6 +31,7 @@
         <Button text="Salvar" fx:id="btnSalvar"/>
         <Button text="Atualizar" fx:id="btnAtualizar"/>
         <Button text="Excluir" fx:id="btnExcluir"/>
+        <Button text="Devolver" fx:id="btnDevolver"/> <!-- Adicionado o botão Devolver -->
         <Button text="Limpar" fx:id="btnLimpar"/>
     </HBox>
 </GridPane>
