@@ -5,11 +5,21 @@ public class Livro {
     private String titulo;
     private String autor;
     private String genero;
+    private boolean disponivel;
 
-    public Livro(String titulo, String autor, String genero) {
+    public Livro(String titulo, String autor, String genero, boolean disponivel) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
+        this.disponivel = disponivel;
+    }
+
+    public Livro(int id, String titulo, String autor, String genero, boolean disponivel) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.genero = genero;
+        this.disponivel = disponivel;
     }
 
     public int getId() {
@@ -42,5 +52,13 @@ public class Livro {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }

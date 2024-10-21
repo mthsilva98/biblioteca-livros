@@ -2,18 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="oi.github.mthsilva98.controller.CadastroLivroController" alignment="CENTER" hgap="10" vgap="10">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <!-- Labels and TextFields -->
+    <!-- Labels and TextFields para Cadastro de Livro -->
     <Label text="Título do Livro:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
     <TextField fx:id="txtTitulo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -23,8 +25,27 @@
     <Label text="Gênero:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
     <TextField fx:id="txtGenero" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-    <!-- Buttons -->
-    <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="1">
+    <Label text="Disponível:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <CheckBox fx:id="chkDisponivel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <!-- Campo de Busca e Botão de Buscar -->
+    <Label text="Buscar por Título:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextField fx:id="txtBusca" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <Button text="Buscar" onAction="#buscarPorTitulo" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+
+    <!-- TableView para exibir os livros -->
+    <TableView fx:id="tableLivros" GridPane.rowIndex="5" GridPane.columnSpan="3">
+        <columns>
+            <TableColumn text="ID" fx:id="colId" />
+            <TableColumn text="Título" fx:id="colTitulo" />
+            <TableColumn text="Autor" fx:id="colAutor" />
+            <TableColumn text="Gênero" fx:id="colGenero" />
+            <TableColumn text="Disponível" fx:id="colDisponivel" />
+        </columns>
+    </TableView>
+
+    <!-- Botões para as Operações -->
+    <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="6" GridPane.columnIndex="1" GridPane.columnSpan="2">
         <Button text="Salvar" fx:id="btnSalvar"/>
         <Button text="Atualizar" fx:id="btnAtualizar"/>
         <Button text="Excluir" fx:id="btnExcluir"/>

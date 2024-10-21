@@ -10,21 +10,13 @@ public class DatabaseConnection {
     private static final String user = "root";
     private static final String password = "123456Ma";
 
-    private static Connection conn;
-
-    public static Connection getConexao() {
-
+    // Método para obter uma nova conexão sempre que for chamado
+    public static Connection getConnection() {
         try {
-            if(conn == null) {
-                conn = DriverManager.getConnection(url, user, password);
-                return conn;
-            }else {
-                return conn;
-            }
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-
 }
