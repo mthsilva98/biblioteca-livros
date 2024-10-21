@@ -61,4 +61,9 @@ public class Livro {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }

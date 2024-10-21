@@ -10,10 +10,10 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // Carregar a tela de Cadastro de Usuários
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/CadastroUsuario.fxml"));
+        // Carrega a tela inicial
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/TelaInicial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 300);
-        stage.setTitle("Cadastro de Usuários");
+        stage.setTitle("Tela Inicial - Gerenciamento de Biblioteca");
         stage.setScene(scene);
         stage.show();
     }
