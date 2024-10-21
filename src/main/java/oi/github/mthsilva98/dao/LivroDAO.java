@@ -24,5 +24,26 @@ public class LivroDAO {
             e.printStackTrace();
         }
     }
+    public void atualizar(Livro livro) {
+        String sql = "UPDATE livros SET titulo = ?, autor = ?, genero = ? WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+             stmt.setString(1, livro.getTitulo());
+             stmt.setString(2, livro.getAutor());
+             stmt.setString(3, livro.getGenero());
+             stmt.setInt(4, livro.getId());
+
+             stmt.executeUpdate();
+
+            System.out.println("Livro atualizado com sucesso!");
+
+        } catch (SQLException e) {
+                 e.printStackTrace();
+        }
+
+    }
+
     // Outros métodos CRUD (atualizar, excluir, buscar) podem ser implementados aqui.
 }
