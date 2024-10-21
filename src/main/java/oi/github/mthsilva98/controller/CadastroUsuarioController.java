@@ -19,6 +19,9 @@ public class CadastroUsuarioController {
     private TextField txtTelefone;
 
     @FXML
+    private TextField txtBuscar; // Novo campo para buscar o usuário
+
+    @FXML
     private Button btnSalvar;
 
     @FXML
@@ -30,6 +33,9 @@ public class CadastroUsuarioController {
     @FXML
     private Button btnLimpar;
 
+    @FXML
+    private Button btnBuscar; // Novo botão para acionar a busca
+
     private Usuario usuarioAtual;
 
     @FXML
@@ -38,6 +44,7 @@ public class CadastroUsuarioController {
         btnAtualizar.setOnAction(event -> atualizarUsuario());
         btnExcluir.setOnAction(event -> excluirUsuario());
         btnLimpar.setOnAction(event -> limparCampos());
+        btnBuscar.setOnAction(event -> buscarUsuario()); // Configura o botão "Buscar"
     }
 
     private void salvarUsuario() {
@@ -86,10 +93,33 @@ public class CadastroUsuarioController {
         }
     }
 
+    private void buscarUsuario() {
+        String criterio = txtBuscar.getText();
+
+        if (criterio.isEmpty()) {
+            mostrarAlerta("Erro", "Digite um nome ou email para buscar.");
+            return;
+        }
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.buscarPorNomeOuEmail(criterio);
+
+        if (usuario != null) {
+            txtNome.setText(usuario.getNome());
+            txtEmail.setText(usuario.getEmail());
+            txtTelefone.setText(usuario.getTelefone());
+            usuarioAtual = usuario; // Atualiza o usuário atual para operações subsequentes
+            mostrarAlerta("Sucesso", "Usuário encontrado e carregado!");
+        } else {
+            mostrarAlerta("Erro", "Usuário não encontrado.");
+        }
+    }
+
     private void limparCampos() {
         txtNome.clear();
         txtEmail.clear();
         txtTelefone.clear();
+        txtBuscar.clear();
         usuarioAtual = null;
     }
 

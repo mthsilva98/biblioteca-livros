@@ -22,8 +22,13 @@
     <Label text="Telefone:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
     <TextField fx:id="txtTelefone" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-    <!-- Buttons -->
     <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="1">
+        <TextField fx:id="txtBuscar" promptText="Buscar por nome ou email"/>
+        <Button text="Buscar" fx:id="btnBuscar"/>
+    </HBox>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="1">
         <Button text="Salvar" fx:id="btnSalvar"/>
         <Button text="Atualizar" fx:id="btnAtualizar"/>
         <Button text="Excluir" fx:id="btnExcluir"/>

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class UsuarioDAO {
 
+    // Método para salvar um novo usuário
     public void salvar(Usuario usuario) {
         String sql = "INSERT INTO usuarios (nome, email, telefone) VALUES (?, ?, ?)";
 
@@ -34,6 +35,7 @@ public class UsuarioDAO {
         }
     }
 
+    // Método para atualizar um usuário existente
     public void atualizar(Usuario usuario) {
         String sql = "UPDATE usuarios SET nome = ?, email = ?, telefone = ? WHERE id = ?";
 
@@ -58,6 +60,7 @@ public class UsuarioDAO {
         }
     }
 
+    // Método para excluir um usuário pelo ID
     public void excluir(int id) {
         String sql = "DELETE FROM usuarios WHERE id = ?";
 
@@ -79,6 +82,7 @@ public class UsuarioDAO {
         }
     }
 
+    // Método para buscar um usuário pelo ID
     public Usuario buscarPorId(int id) {
         String sql = "SELECT * FROM usuarios WHERE id = ?";
         Usuario usuario = null;
@@ -90,6 +94,34 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String telefone = rs.getString("telefone");
+
+                usuario = new Usuario(id, nome, email, telefone);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+    }
+
+    // Método para buscar um usuário pelo nome ou email
+    public Usuario buscarPorNomeOuEmail(String criterio) {
+        String sql = "SELECT * FROM usuarios WHERE nome = ? OR email = ?";
+        Usuario usuario = null;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, criterio);
+            stmt.setString(2, criterio);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String telefone = rs.getString("telefone");
